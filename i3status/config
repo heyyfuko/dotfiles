@@ -1,0 +1,44 @@
+general {
+        colors = true
+	color_good = "#50FA7B"
+	color_degraded = "#F1FA8C"
+	color_bad = "#FF5555"
+        interval = 1
+	separator = ""
+}
+
+order += "ethernet _first_"
+order += "volume master"
+order += "disk /"
+order += "load"
+order += "memory"
+order += "tztime local"
+
+ethernet _first_ {
+        format_up = "[ Eth: %ip ]"
+        format_down = "[ Eth: down ]"
+}
+
+disk "[ /" {
+        format = "[ Disk: %avail ]"
+}
+
+load {
+        format = "[ Cpu: %1min ]"
+}
+
+memory {
+        format = "[ Mem: %used ]"
+}
+
+tztime local {
+        format = "[ %Y-%m-%d %H:%M:%S ] "
+}
+
+volume master {
+        format = "[ Aud: %volume ]"
+        format_muted = "[ Aud: %volume (muted) ]"
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
+}
